@@ -1,0 +1,74 @@
+﻿@import 'common.less';
+
+// ------------------------------------初始化开始-----------------------------------------
+html, body {
+    .percent-box();
+
+    color:#d6d6d6;
+}
+
+
+// ------------------------------------初始化结束-----------------------------------------
+
+
+// ------------------------------------框架开始-----------------------------------------
+
+body {
+    background-color:#212327;
+    box-sizing:border-box;
+    padding:38px;
+}
+
+.wrapper {
+    .percent-box();
+
+    border:1px solid #3e414a;
+    background:url(../../img/logo.png) center no-repeat;
+    background-size:50%;
+    position:relative;
+
+    .box {
+        .percent-box();
+        position:absolute;
+        background-color:#808080;
+
+        @header-height:40px;
+
+        .header {
+            height:@header-height;
+            background-color:#333;
+            text-align:right;
+
+            span {
+                font-size:24px;
+                line-height:40px;
+                margin-right:10px;
+            }
+        }
+
+        .content {
+            background-color:beige;
+            height:96%;
+
+            @s:"100% - @{header-height}";
+            // height: e("-webkit-calc(@{s})");
+            // height: e("-moz-calc(@{s})");
+            // height: e("-o-calc(@{s})");
+            // height: e("-ms-calc(@{s})");
+            height: e("calc(@{s})");
+        }
+    }
+}
+
+
+// ------------------------------------框架结束-----------------------------------------
+
+
+// ------------------------------------手机细节修正开始-----------------------------------------
+@media screen and (max-width: 768px) {
+    body {
+        padding:5px;
+    }
+}
+
+// ------------------------------------手机细节修正结束-----------------------------------------
