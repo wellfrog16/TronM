@@ -46,6 +46,20 @@ body {
   height: 96%;
   height: calc(100% - 40px);
 }
+.wrapper .box .content > div {
+  width: 90%;
+  height: 80%;
+  border: 1px solid red;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 40px;
+  bottom: 0;
+  margin: auto;
+}
+.wrapper .box .about {
+  display: block;
+}
 @media screen and (max-width: 768px) {
   body {
     padding: 5px;

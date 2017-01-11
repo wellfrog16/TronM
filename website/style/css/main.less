@@ -56,6 +56,24 @@ body {
             // height: e("-o-calc(@{s})");
             // height: e("-ms-calc(@{s})");
             height: e("calc(@{s})");
+
+            >div {
+                .percent-box(90%, 80%);
+                border: 1px solid red;
+                position: absolute;
+
+                left:0;
+                right:0;
+                top: @header-height;
+                bottom: 0;
+                margin: auto;
+
+                //display:none;
+            }
+        }
+
+        .about {
+            display:block;
         }
     }
 }
