@@ -4,6 +4,9 @@
 html, body {
     .percent-box();
 
+    font-family: 'Miscrosoft Yahei', '微软雅黑';
+    font-size:14px;
+
     color:#d6d6d6;
 }
 
@@ -15,7 +18,6 @@ html, body {
 
 body {
     background-color:#212327;
-    box-sizing:border-box;
     padding:38px;
 }
 
@@ -43,6 +45,8 @@ body {
                 font-size:24px;
                 line-height:40px;
                 margin-right:10px;
+
+                cursor:pointer;
             }
         }
 
@@ -56,17 +60,12 @@ body {
             // height: e("-o-calc(@{s})");
             // height: e("-ms-calc(@{s})");
             height: e("calc(@{s})");
+            padding:3vw;
 
             >div {
-                .percent-box(90%, 80%);
-                border: 1px solid red;
-                position: absolute;
+                .percent-box();
 
-                left:0;
-                right:0;
-                top: @header-height;
-                bottom: 0;
-                margin: auto;
+                border: 1px solid red;
 
                 //display:none;
             }
@@ -74,6 +73,27 @@ body {
 
         .about {
             display:block;
+        }
+
+        .work {
+            display:none;
+        }
+    }
+
+    .menu {
+        position:absolute;
+        z-index:10;
+
+        width:80px;
+
+        right:0;
+        top:42%;
+        
+
+        li {
+            background-color:blueviolet;
+            margin-bottom:15px;
+            padding:5px 8px;
         }
     }
 }
