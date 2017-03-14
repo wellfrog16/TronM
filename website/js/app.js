@@ -13,7 +13,9 @@
         //'weixin': '//res.wx.qq.com/open/js/jweixin-1.0.0',
         //'hammer': '//cdn.bootcss.com/hammer.js/2.0.8/hammer.min'
         //"jquery": "jquery-1.10.2",
-        //"jqueryMobile": "jquery.mobile-1.4.5.min"
+        //"jqueryMobile": "jquery.mobile-1.4.5.min",
+
+        'bootstrap': "//cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min"
 
     },
 
@@ -27,9 +29,9 @@
 require(["jquery", 'script'], function ($, script) {
 
     // 禁止拉动
-    //$("body").on("touchmove", function (e) {
-    //    e.preventDefault();
-    //});
+    $("body").on("touchmove", function (e) {
+        e.preventDefault();
+    });
 
     //window.ontouchstart = function (e) { e.preventDefault(); };
 
