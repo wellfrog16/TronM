@@ -23,7 +23,28 @@ html, body {
 body {
     background-color:@bgColor;
     //background-color:#000;
+    //padding:38px;
+}
+
+
+
+.scene-video {
+    .percent-box();
+    position:absolute; 
+}
+
+.scene-canvas {
+    .percent-box();
+    position:absolute; 
+}
+
+.scene-main {
+    .percent-box();
+
+    position:absolute;
     padding:38px;
+
+    //display:none;
 }
 
 .wrapper {
@@ -234,14 +255,15 @@ body {
                 color:#FFF;
                 padding:0;
                 padding-bottom:5px;
-                background-color:@bgColor;
+                //background-color:@bgColor;
 
                 &:hover {
-                    background-color:@bgColor;
+                    //background-color:@bgColor;
+                    background-color:initial;
                 }
 
                 &:visited {
-                    background-color:@bgColor;
+                    //background-color:@bgColor;
                 }
 
                 &::after {

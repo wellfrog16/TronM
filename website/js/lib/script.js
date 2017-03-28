@@ -18,7 +18,7 @@ define(['jquery', 'iscroll', 'bootstrap'], function ($, iscroll)
         setTimeout(function () {
             new iscroll('.index', { mouseWheel: true });
             new iscroll('.contact', { mouseWheel: true });
-            alert('加载完成');
+            //alert('加载完成');
 
             $('.contact').hide();
         }, 2000)
