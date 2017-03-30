@@ -3988,7 +3988,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .nav > li > a:hover,
 .nav > li > a:focus {
   text-decoration: none;
-  background-color: #eeeeee;
+  background-color: initial;
 }
 .nav > li.disabled > a {
   color: #777777;
@@ -4003,7 +4003,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .nav .open > a,
 .nav .open > a:hover,
 .nav .open > a:focus {
-  background-color: #eeeeee;
+  background-color: initial;
   border-color: #337ab7;
 }
 .nav .nav-divider {
@@ -6759,6 +6759,10 @@ body {
   width: 100%;
   height: 100%;
   position: absolute;
+  font-size: 0;
+}
+.scene-canvas canvas {
+  opacity: 0.8;
 }
 .scene-main {
   width: 100%;
@@ -6806,9 +6810,46 @@ body {
                 }
             }*/
 }
+.wrapper .welcome img.message {
+  width: 70%;
+  margin: 20vh auto 10vh auto;
+  display: block;
+}
+.wrapper .welcome img.more {
+  width: 25%;
+  margin: 0vh auto;
+  display: block;
+}
+.wrapper .index {
+  overflow: hidden;
+}
+.wrapper .index .row > div {
+  position: relative;
+  overflow: hidden;
+}
+.wrapper .index .row > div > div {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-color: #333;
+  background-color: rgba(51, 51, 51, 0.8);
+  top: 100%;
+  left: 0;
+  text-align: center;
+}
+.wrapper .index .row > div > div img {
+  width: 70%;
+  margin: 10% auto 5px auto;
+}
+.wrapper .index .img-responsive {
+  animation: productZoom 2000ms cubic-bezier(0.175, 0.885, 0.32, 1.275) 1 alternate;
+}
 .wrapper .content {
   height: 100%;
   padding: 15vh 15vw;
+}
+.wrapper .content > div {
+  display: none;
 }
 .wrapper .content .contact > div > div {
   padding: 0 30px;
@@ -6915,8 +6956,12 @@ body {
   color: #FFF;
   padding: 0;
   padding-bottom: 5px;
+  /*&:hover {
+                    //background-color:@bgColor;
+                    background-color:initial;
+                }*/
 }
-.navbar-tronm ul li a:hover {
+.navbar-tronm ul li a:visited {
   background-color: initial;
 }
 .navbar-tronm ul li a::after {
@@ -6935,8 +6980,8 @@ body {
   transition: transform 0.1s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 @media screen and (max-width: 768px) {
-  body {
-    padding: 5px;
+  .scene-main {
+    padding: 0px;
   }
   .wrapper .copyright {
     font-size: 12px;
@@ -6947,6 +6992,12 @@ body {
   }
   .wrapper .content {
     padding: 11vh 8vw;
+  }
+  .wrapper .content .welcome img.logo {
+    width: 80%;
+  }
+  .wrapper .content .welcome img.more {
+    width: 40%;
   }
   .wrapper .content .contact > div > div {
     padding: 0;
@@ -7004,5 +7055,13 @@ body {
   .navbar-tronm .navbar-brand {
     color: #FFF;
     padding-left: 30px;
+  }
+}
+@keyframes productZoom {
+  from {
+    transform: scale(0.1);
+  }
+  to {
+    transform: scale(1);
   }
 }

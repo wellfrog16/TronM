@@ -36,6 +36,11 @@ body {
 .scene-canvas {
     .percent-box();
     position:absolute; 
+    font-size:0;
+
+    canvas {
+        opacity:0.8;
+    }
 }
 
 .scene-main {
@@ -91,6 +96,50 @@ body {
         }
     }
 
+    .welcome {
+
+        img.message { 
+            width:70%;
+            margin:20vh auto 10vh auto;
+            display:block;
+        }
+
+        img.more { 
+            width:25%;
+            margin:0vh auto;
+            display:block;
+        }
+    }
+
+    .index {
+        overflow:hidden;
+
+        .row > div {
+            position:relative;
+            overflow:hidden;
+
+            >div {
+                .percent-box();
+                position:absolute;
+                background-color:#333;
+                background-color:rgba(51,51,51,0.8);
+                top:100%;
+                left:0;
+                text-align:center;
+
+                img {
+                    width:70%;
+                    margin:10% auto 5px auto;
+                }
+            }
+        }
+
+
+        .img-responsive {
+            animation:productZoom 2000ms cubic-bezier(0.175, 0.885, 0.320, 1.275) 1 alternate;
+        }
+    }
+
     @header-height:0px;
     .content {
         //background-color:beige;
@@ -105,6 +154,11 @@ body {
         padding:15vh 15vw;
 
 
+        >div {
+            display:none;
+        }
+
+        // 联系
         .contact {
             >div>div {
                 padding:0 30px;
@@ -257,14 +311,17 @@ body {
                 padding-bottom:5px;
                 //background-color:@bgColor;
 
-                &:hover {
+                /*&:hover {
+                    //background-color:@bgColor;
+                    background-color:initial;
+                }*/
+
+                &:visited {
                     //background-color:@bgColor;
                     background-color:initial;
                 }
 
-                &:visited {
-                    //background-color:@bgColor;
-                }
+
 
                 &::after {
                   content: '';
@@ -293,8 +350,13 @@ body {
 // ------------------------------------手机细节修正开始-----------------------------------------
 @media screen and (max-width: 768px) {
     body {
-        padding:5px;
+        //padding:5px;
     }
+
+    .scene-main {
+        padding:0px;
+    }
+
 
     .wrapper {
         .copyright {
@@ -307,6 +369,16 @@ body {
 
         .content {
             padding:11vh 8vw;
+
+            .welcome {
+                img.logo { 
+                    width:80%;
+                }
+
+                img.more { 
+                    width:40%;
+                }
+            }
 
             .contact {
                 >div>div {
@@ -384,3 +456,10 @@ body {
 }
 
 // ------------------------------------手机细节修正结束-----------------------------------------
+
+
+
+@keyframes productZoom {
+    from { transform: scale(0.1); }
+    to {transform: scale(1);}
+}
