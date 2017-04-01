@@ -68,75 +68,6 @@ body {
         li {
             float:left;
             margin-right:30px;
-
-            /*a {
-                position: relative;
-                text-decoration:none;
-                color:#FFF;
-                padding-bottom:5px;
-                background-color:#d6d6d6;
-
-                &::after {
-                  content: '';
-                  position: absolute;
-                  bottom: 0;
-                  left: 0;
-                  width: 100%;
-                  height: 1px;
-                  background-color: #fff;
-                  transform: scaleX(0);
-                  transition: transform 0.25s cubic-bezier(0.215, 0.61, 0.355, 1);
-                }
-
-                &:hover::after {
-                  transform: scaleX(1);
-                  transition: transform 0.1s cubic-bezier(0.215, 0.61, 0.355, 1);
-                }
-            }*/
-        }
-    }
-
-    .welcome {
-
-        img.message { 
-            width:70%;
-            margin:20vh auto 10vh auto;
-            display:block;
-        }
-
-        img.more { 
-            width:25%;
-            margin:0vh auto;
-            display:block;
-        }
-    }
-
-    .index {
-        overflow:hidden;
-
-        .row > div {
-            position:relative;
-            overflow:hidden;
-
-            >div {
-                .percent-box();
-                position:absolute;
-                background-color:#333;
-                background-color:rgba(51,51,51,0.8);
-                top:100%;
-                left:0;
-                text-align:center;
-
-                img {
-                    width:70%;
-                    margin:10% auto 5px auto;
-                }
-            }
-        }
-
-
-        .img-responsive {
-            animation:productZoom 2000ms cubic-bezier(0.175, 0.885, 0.320, 1.275) 1 alternate;
         }
     }
 
@@ -156,6 +87,104 @@ body {
 
         >div {
             display:none;
+        }
+
+        .welcome {
+            overflow:hidden;
+
+            .carousel {
+                width:100%;
+                height:120%;
+
+                ul {
+                    .percent-box();
+                }
+
+                li {
+                    .percent-box(100%, 120%);
+                    position:absolute;
+                    padding-top:15vh;
+                    //transform: rotate(25deg);
+                    transform-origin:bottom;
+                    //opacity:1;
+                    //display:none;
+                    
+                    
+                    &.in {
+                        animation:welcomeIn 1000ms cubic-bezier(0.23, 1, 0.32, 1) 1 alternate;
+                    }
+
+                    &.out {
+                        animation:welcomeOut 1000ms cubic-bezier(0.23, 1, 0.32, 1) 1 alternate;
+                        //display:none;
+                    }
+
+                    img {
+                        width:80%;
+                        margin:0 auto;
+                        display:block;
+                    }
+                }
+
+                .more {
+                    position:absolute;
+                    bottom:25vh;
+                    left:35%;
+                    width:30%;
+                    margin:0 auto;
+                    display:block;
+                }
+            }
+
+            .about {
+                display:none;
+                text-align:center;
+
+                .info {
+                    width:80%;
+                    margin-bottom:3vh;
+                }
+
+                .btn-contact {
+                    width:20%;
+                    margin-right:1%;
+                }
+
+                .btn-product {
+                    width:20%;
+                    margin-left:1%;
+                }
+            }
+
+        }
+
+        .index {
+            overflow:hidden;
+
+            .row > div {
+                position:relative;
+                overflow:hidden;
+
+                >div {
+                    .percent-box();
+                    position:absolute;
+                    background-color:#333;
+                    background-color:rgba(51,51,51,0.8);
+                    top:100%;
+                    left:0;
+                    text-align:center;
+
+                    img {
+                        width:70%;
+                        margin:10% auto 5px auto;
+                    }
+                }
+            }
+
+
+            .img-responsive {
+                animation:productZoom 2000ms cubic-bezier(0.175, 0.885, 0.320, 1.275) 1 alternate;
+            }
         }
 
         // 联系
@@ -367,16 +396,36 @@ body {
             width:100%;
         }
 
+
+
         .content {
             padding:11vh 8vw;
 
             .welcome {
-                img.logo { 
-                    width:80%;
+                .carousel {
+
+                    li {
+                        padding-top:30%;
+                        width:100%;
+                    }
+
+                    .more {
+                        width:50%;
+                        left:25%;
+                        bottom:30%;
+                    }
                 }
 
-                img.more { 
-                    width:40%;
+                .about {
+
+                    .info {
+                        margin-top:20%;
+                        width:100%;
+                    }
+
+                    .btn-contact, .btn-product {
+                        width:30%;
+                    }
                 }
             }
 
@@ -462,4 +511,14 @@ body {
 @keyframes productZoom {
     from { transform: scale(0.1); }
     to {transform: scale(1);}
+}
+
+@keyframes welcomeIn {
+    from { transform: rotate(40deg); opacity:0; }
+    to {transform: rotate(0deg); opacity:1;}
+}
+
+@keyframes welcomeOut {
+    from { transform: rotate(0deg); opacity:1; }
+    to {transform: rotate(-40deg); opacity:0;}
 }

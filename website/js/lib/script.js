@@ -5,6 +5,9 @@ define(['jquery', 'iscroll', 'bootstrap', 'createjs'], function ($, iscroll)
     var self = {}
 
     self.open = function () {
+
+        self.init();
+
         // 初始化动作绑定
         self.bindAction();
 
@@ -12,6 +15,16 @@ define(['jquery', 'iscroll', 'bootstrap', 'createjs'], function ($, iscroll)
         self.canvas();
 
         self.scene.showWelcome();
+    }
+
+    self.init = function () {
+
+        if ($('body').width() <= 1024) {
+            $('video').remove();
+        }
+
+
+
     }
 
     // 动作绑定
@@ -29,6 +42,21 @@ define(['jquery', 'iscroll', 'bootstrap', 'createjs'], function ($, iscroll)
                 $('#bs-example-navbar-collapse-1').removeClass('in');
             })
         })
+
+        $('.welcome .carousel .more').on('click', function () {
+
+            $('.welcome .carousel').hide();
+            $('.welcome .about').fadeIn();
+
+        });
+
+        $('.welcome .about .btn-contact').on('click', function () {
+            self.scene.showContact();
+        });
+
+        $('.welcome .about .btn-product').on('click', function () {
+            self.scene.showProduct();
+        });
 
         //扇形
         CanvasRenderingContext2D.prototype.sector = function (x, y, radius, sDeg, eDeg) {
@@ -65,6 +93,9 @@ define(['jquery', 'iscroll', 'bootstrap', 'createjs'], function ($, iscroll)
 
         showWelcome: function () {
             this.to('welcome');
+
+            $('.welcome .carousel').show();
+            $('.welcome .about').show();
         },
 
         flagProduct : false,
@@ -84,7 +115,7 @@ define(['jquery', 'iscroll', 'bootstrap', 'createjs'], function ($, iscroll)
                 setTimeout(function () {
                     var c = color[parseInt(Math.random() * (color.length - 1))];
 
-                    var target = $('<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6"><img class="img-responsive" src="https://dummyimage.com/500/' + c + '" /><div class="link"><img class="img-responsive" src="https://dummyimage.com/200/" /><a href="#">项目链接</a><div></div>')
+                    var target = $('<div class="col-sm-4 col-xs-6"><img class="img-responsive" src="https://dummyimage.com/500/' + c + '" /><div class="link"><img class="img-responsive" src="https://dummyimage.com/200/" /><a href="#">项目链接</a><div></div>')
 
                     box.append(target);
 
@@ -115,7 +146,7 @@ define(['jquery', 'iscroll', 'bootstrap', 'createjs'], function ($, iscroll)
         },
 
         to: function (name) {
-            $('.' + name).show();
+            $('.' + name).fadeIn();
             $('.' + name).siblings().hide();
         }
     }
@@ -123,6 +154,7 @@ define(['jquery', 'iscroll', 'bootstrap', 'createjs'], function ($, iscroll)
     // 画布切换
     self.canvas = function () {
         var colors = ['#d30b49', '#0077db', '#7d61d2', '#2abcef', '#f5c70e'],
+            carousel = $('.carousel li'),
             ctx = document.getElementById('canvas').getContext('2d'),
             deg = Math.PI / 180,
             w = $('body').width(), h = $('body').height();
@@ -130,9 +162,26 @@ define(['jquery', 'iscroll', 'bootstrap', 'createjs'], function ($, iscroll)
         ctx.canvas.width = w;
         ctx.canvas.height = h;
 
+        $(window).resize(function () {
+            w = $('body').width();
+            h = $('body').height();
+
+            ctx.canvas.width = w;
+            ctx.canvas.height = h;
+
+            ctx.fillStyle = colors[0]
+            ctx.sector(w / 2, h + 100, w + h, 170 * deg, 0 * deg).fill();
+            ctx.fillStyle = colors[1];
+            num1 = 2
+        });
+
         // 先填充一个颜色
         ctx.fillStyle = colors[0];
         ctx.sector(w / 2, h + 100, w + h, 170 * deg, 0 * deg).fill();
+
+        // 显示第一个标语
+        carousel.hide();
+        carousel.eq(0).show();
 
         
         ctx.fillStyle = colors[1];
@@ -140,7 +189,7 @@ define(['jquery', 'iscroll', 'bootstrap', 'createjs'], function ($, iscroll)
         var target = { x: 359, count: 0 }
 
         createjs.Tween.get(target, { onChange: handleChange, loop: true })
-            .wait(1200)
+            .wait(3000)
             .to({ x: 170, count: 1 }, 500)
             
 
@@ -149,18 +198,40 @@ define(['jquery', 'iscroll', 'bootstrap', 'createjs'], function ($, iscroll)
             .call(handleComplete);
 
 
-        var num = 1;
+        var num1 = 2, num2 = 0;
 
         function handleComplete() {
-            if (num > 4) { num = 0; }
-            ctx.fillStyle = colors[num++];
+            if (num1 > 4) { num1 = 0; }
+            //if (num2++ >= carousel.length) { num2 = 0; }
+            ctx.fillStyle = colors[num1++];
+
+            num2++;
+            
             //console.log('完成')
+
+            console.log(num2)
         }
 
+        //var xx = 0;
 
         function handleChange(event) {
             if (event) {
                 ctx.sector(w / 2, h + 100, w + h, parseInt(target.x) * deg, 0 * deg).fill();
+
+                if (target.x < 270) {
+                    var o = carousel.eq(num2);
+                    o.removeClass('in').addClass('out');
+                    setTimeout(function () { o.hide(); }, 1000)
+                }
+
+                if (target.x < 359) {
+
+                    if (num2 + 1 >= carousel.length) { num2 = -1;}
+
+                    carousel.eq(num2+1).show().removeClass('out').addClass('in');
+                }
+
+                //console.log(target.x)
             }
         }
     }

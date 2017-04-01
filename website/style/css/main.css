@@ -6785,49 +6785,75 @@ body {
 .wrapper .menu li {
   float: left;
   margin-right: 30px;
-  /*a {
-                position: relative;
-                text-decoration:none;
-                color:#FFF;
-                padding-bottom:5px;
-                background-color:#d6d6d6;
-
-                &::after {
-                  content: '';
-                  position: absolute;
-                  bottom: 0;
-                  left: 0;
-                  width: 100%;
-                  height: 1px;
-                  background-color: #fff;
-                  transform: scaleX(0);
-                  transition: transform 0.25s cubic-bezier(0.215, 0.61, 0.355, 1);
-                }
-
-                &:hover::after {
-                  transform: scaleX(1);
-                  transition: transform 0.1s cubic-bezier(0.215, 0.61, 0.355, 1);
-                }
-            }*/
 }
-.wrapper .welcome img.message {
-  width: 70%;
-  margin: 20vh auto 10vh auto;
-  display: block;
+.wrapper .content {
+  height: 100%;
+  padding: 15vh 15vw;
 }
-.wrapper .welcome img.more {
-  width: 25%;
-  margin: 0vh auto;
-  display: block;
+.wrapper .content > div {
+  display: none;
 }
-.wrapper .index {
+.wrapper .content .welcome {
   overflow: hidden;
 }
-.wrapper .index .row > div {
+.wrapper .content .welcome .carousel {
+  width: 100%;
+  height: 120%;
+}
+.wrapper .content .welcome .carousel ul {
+  width: 100%;
+  height: 100%;
+}
+.wrapper .content .welcome .carousel li {
+  width: 100%;
+  height: 120%;
+  position: absolute;
+  padding-top: 15vh;
+  transform-origin: bottom;
+}
+.wrapper .content .welcome .carousel li.in {
+  animation: welcomeIn 1000ms cubic-bezier(0.23, 1, 0.32, 1) 1 alternate;
+}
+.wrapper .content .welcome .carousel li.out {
+  animation: welcomeOut 1000ms cubic-bezier(0.23, 1, 0.32, 1) 1 alternate;
+}
+.wrapper .content .welcome .carousel li img {
+  width: 80%;
+  margin: 0 auto;
+  display: block;
+}
+.wrapper .content .welcome .carousel .more {
+  position: absolute;
+  bottom: 25vh;
+  left: 35%;
+  width: 30%;
+  margin: 0 auto;
+  display: block;
+}
+.wrapper .content .welcome .about {
+  display: none;
+  text-align: center;
+}
+.wrapper .content .welcome .about .info {
+  width: 80%;
+  margin-bottom: 3vh;
+}
+.wrapper .content .welcome .about .btn-contact {
+  width: 20%;
+  margin-right: 1%;
+}
+.wrapper .content .welcome .about .btn-product {
+  width: 20%;
+  margin-left: 1%;
+}
+.wrapper .content .index {
+  overflow: hidden;
+}
+.wrapper .content .index .row > div {
   position: relative;
   overflow: hidden;
 }
-.wrapper .index .row > div > div {
+.wrapper .content .index .row > div > div {
   width: 100%;
   height: 100%;
   position: absolute;
@@ -6837,19 +6863,12 @@ body {
   left: 0;
   text-align: center;
 }
-.wrapper .index .row > div > div img {
+.wrapper .content .index .row > div > div img {
   width: 70%;
   margin: 10% auto 5px auto;
 }
-.wrapper .index .img-responsive {
+.wrapper .content .index .img-responsive {
   animation: productZoom 2000ms cubic-bezier(0.175, 0.885, 0.32, 1.275) 1 alternate;
-}
-.wrapper .content {
-  height: 100%;
-  padding: 15vh 15vw;
-}
-.wrapper .content > div {
-  display: none;
 }
 .wrapper .content .contact > div > div {
   padding: 0 30px;
@@ -6993,11 +7012,22 @@ body {
   .wrapper .content {
     padding: 11vh 8vw;
   }
-  .wrapper .content .welcome img.logo {
-    width: 80%;
+  .wrapper .content .welcome .carousel li {
+    padding-top: 30%;
+    width: 100%;
   }
-  .wrapper .content .welcome img.more {
-    width: 40%;
+  .wrapper .content .welcome .carousel .more {
+    width: 50%;
+    left: 25%;
+    bottom: 30%;
+  }
+  .wrapper .content .welcome .about .info {
+    margin-top: 20%;
+    width: 100%;
+  }
+  .wrapper .content .welcome .about .btn-contact,
+  .wrapper .content .welcome .about .btn-product {
+    width: 30%;
   }
   .wrapper .content .contact > div > div {
     padding: 0;
@@ -7063,5 +7093,25 @@ body {
   }
   to {
     transform: scale(1);
+  }
+}
+@keyframes welcomeIn {
+  from {
+    transform: rotate(40deg);
+    opacity: 0;
+  }
+  to {
+    transform: rotate(0deg);
+    opacity: 1;
+  }
+}
+@keyframes welcomeOut {
+  from {
+    transform: rotate(0deg);
+    opacity: 1;
+  }
+  to {
+    transform: rotate(-40deg);
+    opacity: 0;
   }
 }
